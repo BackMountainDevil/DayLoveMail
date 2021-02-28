@@ -9,14 +9,19 @@
 import schedule
 import time
 import datetime
+import os
+from mail import sendMail
 
 
 def job():
-    with open('love.txt', 'a') as f:
-        f.write(str(datetime.datetime.now()) + '\n')
+    content = str(datetime.datetime.now()) + 'Loving you'
+    sendMail(qq=os.getenv('QQ'),
+             pwd=os.getenv('PWD'),
+             receiver=os.getenv('MAIL_RECEIVER'),
+             mail_content=content)
 
 
-schedule.every(10).seconds.do(job)
+schedule.every(30).seconds.do(job)
 # schedule.every().day.at("10:30").do(job)
 
 while True:

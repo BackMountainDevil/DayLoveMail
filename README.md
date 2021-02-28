@@ -8,5 +8,6 @@
 ```bash
 QQ = '123456789'
 PWD = '345adf456qsd0asd'
+MAIL_RECEIVER = '191715520@163.com'
 ```
 
