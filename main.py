@@ -8,21 +8,20 @@
 '''
 import schedule
 import time
-import datetime
 import os
+import requests
 from mail import sendMail
 
 
 def job():
-    content = str(datetime.datetime.now()) + 'Loving you'
+    r = requests.get('http://open.iciba.com/dsapi/').json()
     sendMail(qq=os.getenv('QQ'),
              pwd=os.getenv('PWD'),
              receiver=os.getenv('MAIL_RECEIVER'),
-             mail_content=content)
+             mail_content=r['note'])
 
 
-schedule.every(30).seconds.do(job)
-# schedule.every().day.at("10:30").do(job)
+schedule.every().day.at("5:20").do(job)
 
 while True:
     schedule.run_pending()
